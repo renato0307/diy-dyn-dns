@@ -1,8 +1,17 @@
 # DIY Dynamic DNS
 
+I need to connect remotely to my home office and work in my Ubuntu workstation
+from a laptop with less resources.
+
+So, instead of using a dynamic DNS service, I decided to build my own.
+
+Inspired by [this article](https://aws.amazon.com/blogs/startups/how-to-build-a-serverless-dynamic-dns-system-with-aws/) with some simplifications.
+
+I used Terraform and Go instead of CloudFormation and Python.
+
 ## How am I using this?
 
-![Alt text](docs/diydyndns.png)
+![How am I using this](docs/diydyndns.png)
 
 ## How much does it cost in terms of AWS services?
 
