@@ -25,15 +25,15 @@ First create the `terraform.tfvars` inside the `./infra`  folder.
 Example:
 
 ```hcl
-api_key="SOME STRONG PASSWORD"
-dns_dyn_record_name="THE DNS RECORD TO BE USED, e.g. dyn.mypersondomain.com"
-dns_hosted_zone="THE ROUTE53 HOSTED ZONE ID"
+api_key="put-here-a-complex-api-key"
+dns_dyn_record_name="the dns record to be used, e.g. dyn.mypersondomain.com"
+dns_hosted_zone="the route53 hosted zone id"
 ```
 
 Then run the following commands:
 
 ```sh
-export AWS_PROFILE=xxx
+export AWS_PROFILE=put-here-your-aws-profile-to-connect-to-aws
 make init
 make deploy
 ```
@@ -46,15 +46,29 @@ Log in into the raspberry and run
 crontab -e
 ```
 
-Paste the contents of the `update-dns.crontab` file.
+Paste the contents of the `./crontab/update-dns.crontab` file.
 
-Copy the `update-dns.sh` file to `/home/pi` and give permissions to run:
+Copy the `./crontab/update-dns.sh` file to `/home/pi` and give permissions to run:
 
 ```sh
 chmod 700 update-dns.sh
 ```
 
-Edit the `/home/pi/.profile` 
+Edit the `/home/pi/.profile` and set the `DIY_DYN_DNS_UPDATE_API_KEY` and 
+the `DIY_DYN_DNS_UPDATE_ENDPOINT` environment vars:
+
+```sh
+export DIY_DYN_DNS_UPDATE_ENDPOINT=https://your-id-here.lambda-url.eu-west-1.on.aws
+export DIY_DYN_DNS_UPDATE_API_KEY=put-here-a-complex-api-key
+```
+
+## Generating an API key
+
+You can use `openssl`:
+
+```sh
+openssl rand -base64 64
+```
 
 ## Extra
 
